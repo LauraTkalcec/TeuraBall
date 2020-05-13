@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
     private int count;
 
+    public AudioClip pickup;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -41,12 +43,13 @@ public class PlayerController : MonoBehaviour
             count = count + 1;
             SetCountText();
         }
+        AudioSource.PlayClipAtPoint(pickup, transform.position);
     }
 
     void SetCountText()
     {
 		//brojenje sakupljenih dijamanata
-        countText.text = "Rezultat: " + count.ToString();
+        countText.text = "Rezultat: " + count.ToString() + " / 12";
         if (count >= 12)
         {
 			//bacanje na novu scenu ukoliko su sakupljeni svi dijamanti
